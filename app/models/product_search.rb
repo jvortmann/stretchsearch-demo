@@ -1,7 +1,28 @@
 module StretchSearch
-  extend ActiveModel::Naming
+  extend ActiveSupport::Concern
+
+  included do
+    class_attribute :_fields
+    self._fields = []
+  end
 
   def initialize(params)
+    if params.present?
+      params.each do |name, value|
+        send "#{name}=", value
+      end
+    end
+  end
+
+  def result
+    result = Product.scoped
+    _fields.each do |f|
+      value = send(f)
+      if value.present?
+        result = result.where(f => value)
+      end
+    end
+    result
   end
 
   module ClassMethods
@@ -9,18 +30,13 @@ module StretchSearch
       class_eval do
         attr_accessor field
       end
+      _fields << field
     end
   end
-
-  def result
-    Product.all
-  end
-
 end
 
 class ProductSearch
   include StretchSearch
-  extend StretchSearch::ClassMethods
 
   search :name
 end
