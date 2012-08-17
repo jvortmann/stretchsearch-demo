@@ -1,0 +1,9 @@
+<div id="search_form">
+  <%= render :partial => 'search_form' %>
+</div>
+
+<div id="products">
+  <%= render :partial => 'products', :object => @products %>
+</div>
+
+<%= link_to 'New Product', new_product_path %>
