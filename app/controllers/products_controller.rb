@@ -1,11 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    if params[:q].present? and params[:q][:name].present?
-      @products = Product.where("name LIKE '%#{params[:q][:name]}%'")
-    else
-      @products = Product.all
-    end
-    @q = Product.new
+    @q = ProductSearch.new(params[:q])
+    @products = @q.result
   end
 
   def show
