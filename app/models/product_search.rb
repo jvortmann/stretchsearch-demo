@@ -1,5 +1,5 @@
 class ProductSearch
   include StretchSearch
 
-  search :name
+  search :name, :contains
 end
