@@ -2,8 +2,9 @@ module StretchSearch
   extend ActiveSupport::Concern
 
   included do
-    class_attribute :_fields
+    class_attribute :_fields, :_target_class
     self._fields = []
+    self._target_class = name[0..-7].constantize
   end
 
   def initialize(params)
@@ -15,7 +16,7 @@ module StretchSearch
   end
 
   def result
-    result = Product.scoped
+    result = _target_class.scoped
     _fields.each do |f|
       value = send(f)
       if value.present?
