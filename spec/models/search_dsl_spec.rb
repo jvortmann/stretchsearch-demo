@@ -1,18 +1,5 @@
 require 'spec_helper'
 
-module SuperModel
-  module RandomID
-    protected
-    def generate_id
-      SecureRandom.hex(13)
-    end
-  end
-end
-
-class Model < SuperModel::Base
-  include SuperModel::RandomID
-end
-
 class ModelSearch
   include SearchDSL
 end

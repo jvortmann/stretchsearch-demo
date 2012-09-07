@@ -36,3 +36,19 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+# supermodel hack for rails 3.2
+module SuperModel
+  module RandomID
+    protected
+    def generate_id
+      SecureRandom.hex(13)
+    end
+  end
+end
+
+# model to use
+class Model < SuperModel::Base
+  include SuperModel::RandomID
+end
+
