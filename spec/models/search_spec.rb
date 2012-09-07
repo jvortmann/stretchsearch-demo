@@ -14,7 +14,7 @@ describe Search do
     end
 
     it 'should return all objects' do
-      search.result.should match_array(Model.all)
+      search.result.should =~ Model.all
     end
   end
 end

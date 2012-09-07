@@ -13,7 +13,7 @@ describe SearchDSL do
     end
 
     it 'should get the search result' do
-      search.result.should match_array(Model.all)
+      search.result.should =~ Model.all
     end
   end
 end

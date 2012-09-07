@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/maccman/supermodel.git
-  revision: d5c06b867111628438021116afea7200e97a8c6d
-  specs:
-    supermodel (0.1.4)
-      activemodel (>= 3.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -158,5 +151,4 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   sqlite3
-  supermodel!
   uglifier (>= 1.0.3)
