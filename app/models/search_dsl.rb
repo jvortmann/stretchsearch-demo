@@ -9,4 +9,8 @@ module SearchDSL
   def model
     _model
   end
+
+  def result
+    _model.all
+  end
 end

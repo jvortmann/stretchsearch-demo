@@ -24,5 +24,9 @@ describe SearchDSL do
     it 'should guess the model based on the class name' do
       search.model.should == Model
     end
+
+    it 'should get the search result' do
+      search.result.should match_array(Model.all)
+    end
   end
 end
