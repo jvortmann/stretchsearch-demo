@@ -3,9 +3,18 @@ class Search
 
   def initialize(model)
     @model = model
+    @rules = []
   end
 
-  def result
-    model.all
+  def run(params={})
+    result = model.scoped
+    @rules.each do |r|
+      result = result.where(r => params[r])
+    end
+    result
+  end
+
+  def add_rule(attribute)
+    @rules << attribute
   end
 end
