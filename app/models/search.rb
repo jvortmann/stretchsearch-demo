@@ -4,4 +4,8 @@ class Search
   def initialize(model)
     @model = model
   end
+
+  def result
+    model.all
+  end
 end

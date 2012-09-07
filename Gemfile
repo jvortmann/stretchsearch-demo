@@ -21,6 +21,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'supermodel', git: "https://github.com/maccman/supermodel.git"
 end
 
 # To use ActiveModel has_secure_password
