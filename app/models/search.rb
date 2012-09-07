@@ -9,7 +9,9 @@ class Search
   def run(params={})
     result = model.scoped
     @rules.each do |r|
-      result = result.where(r => params[r])
+      if params[r].present?
+        result = result.where(r => params[r])
+      end
     end
     result
   end

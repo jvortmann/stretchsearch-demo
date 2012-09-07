@@ -24,30 +24,34 @@ describe SearchDSL do
       end
     end
 
-    context 'with a nil param' do
+    context 'with one rule' do
       before do
         ModelSearch.search :name
       end
 
-      let(:search) { ModelSearch.new(nil) }
+      context 'and nil params' do
+        let(:search) { ModelSearch.new(nil) }
 
-      it 'should not fail' do
-        search.result
+        it 'should not fail' do
+          search.result
+        end
       end
 
-    end
+      context 'and a param with no value' do
+        let(:search) { ModelSearch.new({}) }
 
-    context 'with a param' do
-      before do
-        ModelSearch.search :name
+        it 'should ignore the param' do
+          search.result.should =~ [@model1, @model2]
+        end
       end
 
-      let(:search) { ModelSearch.new(name: 'a name') }
+      context 'and a param with a value' do
+        let(:search) { ModelSearch.new(name: 'a name') }
 
-      it 'should filter using the param' do
-        search.result.should =~ [@model1]
+        it 'should filter using the param' do
+          search.result.should =~ [@model1]
+        end
       end
     end
   end
-
 end
