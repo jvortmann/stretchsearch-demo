@@ -2,8 +2,13 @@ module SearchDSL
   extend ActiveSupport::Concern
 
   included do
-    class_attribute :_model
+    class_attribute :_model, :_search
     self._model = name[0..-7].constantize
+    self._search = Search.new(self._model)
+  end
+
+  def initialize(params={})
+    @params = params
   end
 
   def model
@@ -11,6 +16,12 @@ module SearchDSL
   end
 
   def result
-    _model.all
+    _search.run @params
+  end
+
+  module ClassMethods
+    def search(attribute)
+      _search.add_rule(attribute)
+    end
   end
 end
