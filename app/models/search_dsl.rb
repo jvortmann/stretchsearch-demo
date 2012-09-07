@@ -8,7 +8,7 @@ module SearchDSL
   end
 
   def initialize(params={})
-    @params = params
+    @params = params || {}
   end
 
   def model

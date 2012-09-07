@@ -7,6 +7,7 @@ end
 describe SearchDSL do
   context 'when created' do
     before do
+      ModelSearch._search = Search.new(ModelSearch._model)
       @model1 = Model.create(name: 'a name')
       @model2 = Model.create(name: 'another name')
     end
@@ -21,6 +22,19 @@ describe SearchDSL do
       it 'should get the search result' do
         search.result.should =~ [@model1, @model2]
       end
+    end
+
+    context 'with a nil param' do
+      before do
+        ModelSearch.search :name
+      end
+
+      let(:search) { ModelSearch.new(nil) }
+
+      it 'should not fail' do
+        search.result
+      end
+
     end
 
     context 'with a param' do
