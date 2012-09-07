@@ -1,5 +1,5 @@
 class ProductSearch
-  include StretchSearch
+  include SearchDSL
 
-  search :name, :contains
+  search :name
 end
