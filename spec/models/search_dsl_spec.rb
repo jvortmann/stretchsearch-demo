@@ -29,6 +29,11 @@ describe SearchDSL do
         ModelSearch.search :name
       end
 
+      it 'should create an accessor for the attribute' do
+        search = ModelSearch.new
+        search.name = 'name'
+      end
+
       context 'and nil params' do
         let(:search) { ModelSearch.new(nil) }
 

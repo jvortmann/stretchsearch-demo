@@ -22,6 +22,10 @@ module SearchDSL
   module ClassMethods
     def search(attribute)
       _search.add_rule(attribute)
+
+      class_eval do
+        attr_accessor attribute
+      end
     end
   end
 end
